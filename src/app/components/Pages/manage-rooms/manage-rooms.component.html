@@ -1,0 +1,75 @@
+<div class="container">
+
+  <div class="header"><app-header-home [username]="username"></app-header-home></div>
+
+  <div class="lateral-menu"><app-lateral-menu [username]="username"></app-lateral-menu></div>
+
+  <div class="information">
+    <div class="overflow-auto" style="max-width: 1000px; max-height: 640px;">
+      <h1>Administrar Tipo Habitaciones <a routerLink="/create-type-rooms" style="padding-left: 20px;">Crear Tipo
+          Habitación</a></h1>
+
+      <div *ngFor="let roomType of roomsTypes;">
+        <div class="border border-1 p-3 m-3 rounded-3 border-dark">
+          <div class="d-flex justify-content-between pb-2 border-bottom border-2">
+            <div class="d-flex">
+              <img class="img-fluid rounded-3" src="{{roomType.imagen}}" alt="Image Room" width="150" height="150">
+              <span class="ps-3">
+                <h3 class="fw-bold">{{roomType.nombre}}</h3>
+                <h4>Tarifa:
+                  <span class="text-primary">₡{{roomType.tarifa}}</span>
+                </h4>
+                <h4>Caracteristicas:
+                  <span class="text-primary">{{roomType.caracteristicas}}</span>
+                </h4>
+              </span>
+            </div>
+            <div>
+              <span class="pe-3">
+                <button type="button" class="btn btn-danger" (click)="goDelete(roomType.pK_Tipo_Habitacion)">Eliminar
+                  Tipo habitación</button>
+              </span>
+              <span>
+                <button type="button" class="btn btn-primary" (click)="goEdit(roomType.pK_Tipo_Habitacion)">Editar Tipo
+                  habitación</button>
+              </span>
+            </div>
+          </div>
+          <p class="pt-2">{{roomType.descripcion}}</p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="text-center" scope="col">Número de Habitación</th>
+                <th class="text-center" scope="col">Estado Hoy</th>
+                <th class="text-center" scope="col">Eliminar habitación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let room of rooms;">
+                <td class="text-center" *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion">
+                  {{room.numero_Habitacion}}
+                </td>
+                <td *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion"
+                  [ngClass]="{'bg-success': room.estado_Del_Dia == 'Utilizable', 'bg-danger': room.estado_Del_Dia != 'Utilizable'}"
+                  class="text-center fw-bold text-white">
+                  {{ room.estado_Del_Dia ? room.estado_Del_Dia : room.estado_Del_Dia }}
+                </td>
+                <td class="text-center" *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion">
+                  <button type="button" class="btn btn-danger"
+                    (click)="goDeleteRoom(room.pK_Habitacion)">Eliminar</button>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="area-publicity"><app-area-publicity></app-area-publicity></div>
+
+  <div class="footer"><app-footer></app-footer></div>
+
+</div>

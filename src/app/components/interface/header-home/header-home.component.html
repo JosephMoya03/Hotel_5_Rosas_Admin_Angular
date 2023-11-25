@@ -1,0 +1,20 @@
+<!-- Image and text -->
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">
+    <img src="../../../../assets/img/logo400x400.png" width="100" class="img-fluid" alt="">
+    {{hotelName}}
+  </a>
+
+  <a class="navbar-brand">Módulo Administrativo</a>
+
+  <div>
+    <a class="navbar-brand" style="align-items: end;">
+      <img src="../../../../assets/img/user.png" width="50" height="50" class="d-inline-block align-mid" alt="">
+    </a>
+
+    <a class="navbar-brand">Bienvenido {{username}}</a>
+    <button class="btn btn-danger" (click)="logOut()">Cerrar sesión</button>
+  </div>
+
+
+</nav>
